@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+        function gather(){
+
+          let a = document.getElementsByTagName("input");
+
+          let cityName = a[0].value; 
+          let cityShortName = ""; //a[1].value;
+          let partnerName = a[1].value;          
+                 
+
+          let id = getIdByName(cityName);          
+          
+
+          google.script.run.addPartner(cityName, id, cityShortName, partnerName);
+
+          // google.script.host.close();
+
+        }
+
+        function getIdByName(cityName){          
+          var arr = [ "", "",                        
+            {arrayNamesKey}           
+          ];         
+          return arr[arr.indexOf(cityName)+1];
+        }
+
+    </script>
+</head>
+
+<div>Добавить нового партнера</div>
+<div>===================================</div>
+
+<table>
+    <tr>
+        <th>
+            <div>Выбрать город</div>
+        </th>
+        <th>
+            <input list="options">
+            <datalist id="options">
+              
+              {arrayOptions}
+
+            </datalist>
+        </th>        
+    </tr>
+    <!-- <tr>
+        <th>
+            <div>Аббревиатура города</div>
+        </th>
+        <th>
+            <input id="cityShortName" type="text" size="20" value="">
+        </th>
+    </tr> -->
+    <tr>
+        <th>
+            <div>Имя партнера</div>
+        </th>
+        <th>
+            <input id="partnerName" type="text" size="20" value="">
+        </th>
+    </tr>
+</table>
+
+
+<input type="button" value="Записать" onclick="gather()" />
+
+</body>
+</html>
